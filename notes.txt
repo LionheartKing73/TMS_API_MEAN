@@ -1,0 +1,13 @@
+﻿Channels: one less station icon than listings, when "var CHANNELS_TO_QUERY = 10;" 10 stations and 11 listings are showing.
+The Channels are not matching the programming See "https://www.tvpassport.com/lineups?r=tv-listings" post code K0A 2E0 Broadcast-Kars, ON
+
+The header is sticking for half the page then moving with the scroll
+
+
+Keep the time bar at the top of the page, only scroll horizontaly.
+
+Lazy loading.
+
+Use Favorites cookie info in the API call
+
+Yesterday, Today, Tomorrow, Whatever the following Day will be, Whatever the following Day will be, etc. etc. for 7days (same day next week).

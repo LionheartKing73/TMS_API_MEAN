@@ -1,0 +1,26 @@
+<div role="main">
+    <main>
+        <div class="epg">
+            <div class="epg-nav">
+                <div class="wrapper">
+                    <a ng-href="#/epg" style="margin-left: 1em;float: left;line-height: 37px;padding-top: .25em;">TvGrid</a>
+                </div>
+            </div><!-- // Nav -->
+
+
+            <div class="epg-channels channels-favorites">
+                <ol class="list list-channels">
+                    <li ng-repeat="c in channels | limitTo:taille-1 | filter:searchC ">
+                        <div class="main_channels" style="float:left; width: 80px;">
+                            <a href="index.html" title="{{c.callsign}}"><img ng-if="c.logoFilename" ng-src="http://cdn.tvpassport.com/image/station/76x28/{{c.logoFilename}}" alt="Channel Logo" /></a>
+                            <span class="title" style="font-size:.6em; color: #000;" >{{c.number}} {{c.callsign}}</span>
+                        </div>
+                        <div class="favorites">
+                            <input type="checkbox" ng-click="favorites()" ng-checked="favoritesChannels.indexOf(c.number) != -1" value="{{c.number}}">
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+</div>

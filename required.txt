@@ -1,0 +1,7 @@
+﻿
+http://blog.teamtreehouse.com/install-node-js-npm-windows
+https://www.npmjs.com/package/forever
+server.js - command prompt, run:
+
+node server.js
+forever server.js

@@ -1,0 +1,527 @@
+<style type="text/css">
+    .ngdialog.ngdialog-theme-default {
+    padding-bottom: 160px;
+    padding-top: 60px;
+}
+    .epg .epg-contents .control{
+        padding-top: 0.2em
+    }
+    #timebar.timebar {
+            margin-top: 0 !important;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            margin-left: -310px;
+        }
+    .epg .epg-programmes .programme .title{padding: 3px;}
+    #firstline{
+        display: none;
+    }
+    #menu{
+        display: none;
+    }
+    .hg{
+    }
+    .smt{font-size: 9px;}
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        float: left;
+    }
+    li {
+        float:left;
+
+    }
+    li:last-child {
+        border-right:none;
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li{
+        display: block;
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li a {
+        color: #111;
+        display: block;
+        line-height: 1.25;
+        font-size: .875em;
+        font-weight: 500;
+        height: 100%;
+        padding: 2px;
+        text-align: left;
+        text-decoration: none;
+        -webkit-transition: all .25s;
+        -moz-transition: all .25s;
+        -o-transition: all .25s;
+        transition: all .25s;
+    }
+    .epg .epg-nav {
+        background-color: #fff;
+        padding-top: 0;
+        padding-bottom: 2px;
+    }
+    .epg .epg-nav .epg-nav-dates{
+        float: left;
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li.today{
+        background-color: #006;
+        
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li.today a {
+        color: #f0f0f0;
+        line-height: 1.25;
+        position: relative;
+        font-weight: 700;
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li.tomor a {
+        line-height: 1.25;
+    }  
+    .epg .epg-nav .epg-nav-dates .list-dates{
+        border: none;
+    }
+    .epg .epg-nav .epg-nav-dates .list-dates li.today a:focus, .epg .epg-nav .epg-nav-dates .list-dates li.today a:hover{
+        background-color: #006;
+        font-weight: 900;
+        /*color: yellow;*/
+    }
+
+        .ads_container{
+            float:left;
+            min-width: 320px;
+        }
+        .ads_div{
+            float:left;
+            height: 54px;width: 320px;
+            position: -webkit-sticky;
+            position: sticky !important;
+            left:-1px !important; 
+            background:url("./ad.png") no-repeat;
+            border: 1px solid black;
+
+        }
+        .adsbygoogle{
+            display:block; width:320px; height: 54px;float: left;
+        }
+        .blank_ads{
+            float: left;
+            width: 200px;
+            height: 54px;
+            background-color: grey;
+        }
+
+
+
+.epg .epg-programmes .list{
+    overflow: unset;
+}
+ 
+.epg .epg-programmes .list li{
+    overflow: unset;
+    width: 5280px;
+    background-color: white;
+	border-bottom: 1px solid #aaa !important;
+    border: none;
+}
+.epg .epg-programmes .list li .programme{
+    //background-color: white;
+   /* border-bottom: 1px solid #aaa; */
+    border-left: 1px solid #aaa;
+    border-right: none;
+
+
+ }
+.epg .epg-programmes .list li .programme a{
+       float: left
+       width:100%;
+}
+.sticky_title{/*
+        position: -webkit-sticky;
+        position: sticky;
+        left:-1px; 
+        height: 100%;
+        overflow: hidden;
+		width: 100%;*/
+        float:left;
+        overflow: hidden;
+
+        
+}
+
+
+
+    @media (min-width: 37.5em){
+        
+        .epg .epg-nav .epg-nav-dates .list-dates li {
+            border: 0;
+            display: block;
+            float: left;
+            height: 1.25em;
+            
+        }
+
+        .epg .epg-nav .epg-nav-dates .list-dates li a{
+            border: 0;
+            line-height: 1.25em;text-align: left;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        #menu {
+            width:1.4em;
+            display: block;
+            font-size:1.35em;
+            text-align: center;
+            float:left;
+        }
+        #days.js {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            margin-top: 25px;
+            width: 85px;
+        }
+        ul {
+            width:96px;
+            background-color: white;
+            padding: 3px;
+        }
+        li {
+            /*width:90px;*/
+            border-right:none;
+        }
+        .epg .epg-nav .epg-nav-dates {
+            margin-top: 0;
+            overflow: hidden;
+            float:left;
+        }
+        .epg .epg-nav .epg-nav-dates .list-dates li a{
+            line-height: 1.25;
+            border: none;
+            /*height: inherit;*/
+        }
+        .epg .epg-nav .epg-nav-dates .list-dates li{
+            width: 100%;
+            border: none;
+        }
+
+        @media screen and (min-width: 768px) {
+            #menu {
+                display: none;
+            }
+        }       
+        #timebar {
+            margin-left: 0px;
+        }
+
+        #timebar.timebar {
+            margin-top: 0 !important;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            margin-left: -310px;
+        }
+
+
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="text/javascript">
+        $("#days").addClass("js").before('<div id="menu">&#9776;</div>');
+        $("#menu").click(function () {
+            $("#days").toggle();
+        });
+        $(window).resize(function () {
+            if (window.innerWidth > 768) {
+                $("#days").removeAttr("style");
+            }
+        });
+        var localdate = new Date();
+        var gmt = -localdate.getTimezoneOffset( ) / 60;
+        var hr=localdate.getHours();
+         
+    </script>
+
+
+
+    <div role="main">
+        <main>
+            <div class="epg" data-component="epg" data-start="428">
+
+                <div class="epg-nav">
+                    <div class="wrapper">
+                        <!--<form class="form form-horizontal">
+                            <label for="search" class="label">
+                                <input id="search" name="search" class="input" placeholder="{{'RechercheC' | translate}}" ng-model="searchC" style="color:black" />
+                            </label>
+                            <label for="search" class="label">
+                                <input id="search" name="search" class="input" placeholder="{{'RechercheP' | translate}}" ng-model="searchP" style="color:black" />
+                            </label>
+                        </form>-->
+
+
+
+                        <div class="epg-nav-dates" >
+                            <ul class="list list-dates" data-component="dates" id="days">
+                                <li class="today"><a href="index.html" ng-click="setDay(0, $event)">{{'Aujourd'| translate }}</a></li>
+                                <li ><a href="index.html" ng-click="setDay(1, $event)" >{{'Demain'| translate }}</a></li>
+                                <li ><a href="index.html" ng-click="setDay(2, $event)" >Mon</a></li>
+                                <li ><a href="index.html" ng-click="setDay(3, $event)" >Tue</a></li>
+                                <li ><a href="index.html" ng-click="setDay(4, $event)" >Wed</a></li>
+                                <li ><a href="index.html" ng-click="setDay(5, $event)" >Thur</a></li>
+                                <li ><a href="index.html" ng-click="setDay(6, $event)" >Fri</a></li>
+                                <li ><a href="index.html" ng-click="setDay(7, $event)" >Sat</a></li>
+                                <li ><a href="index.html" ng-click="setDay(8, $event)" >Sun</a></li>
+                            </ul>
+                        </div>
+                        <a ng-href="#/favorites" style="margin-left: 1em;margin-right:1em;float: right;text-decoration: none;color: black;">Select favorite channels</a>
+                    </div>
+                </div><!-- // Nav -->
+
+                <div id="progressBar" style="display: none;"><img src="images/Spinner.gif"></div>
+
+                <div class="epg-contents" style="overflow-x: visible; overflow-y: visible;">
+
+                    <a href class="control control-prev" style="" data-action="prev"><span class="icon fa fa-chevron-left" aria-hidden="true"></span></a>
+                    <a href class="control control-next" style="" data-action="next"><span class="icon fa fa-chevron-right" aria-hidden="true"></span></a>
+
+
+                    <div class="epg-grid" style="min-height:100vh;width: 103%">
+                        <div id="timebar-anchor"></div>
+                        <div class="epg-timeline" id="timebar">
+                            <ol class="list list-timeline" id="epg-box">
+                                <li>00:00</li>
+                                <li>01:00</li>
+                                <li>02:00</li>
+                                <li>03:00</li>
+                                <li>04:00</li>
+                                <li>05:00</li>
+                                <li>06:00</li>
+                                <li>07:00</li>
+                                <li>08:00</li>
+                                <li>09:00</li>
+                                <li>10:00</li>
+                                <li>11:00</li>
+                                <li>12:00PM</li>
+                                <li>1:00PM</li>
+                                <li>2:00PM</li>
+                                <li>3:00PM</li>
+                                <li>4:00PM</li>
+                                <li>5:00PM</li>
+                                <li>6:00PM</li>
+                                <li>7:00PM</li>
+                                <li>8:00PM</li>
+                                <li>9:00PM</li>
+                                <li>10:00PM</li>
+                                <li>11:00PM</li>
+                            </ol>
+                        </div><!-- // Timeline -->
+                        <div class="epg-channels"   >
+
+                            <ol class="list list-channels">
+                                <li ng-repeat="c in channels| limitTo:taille">
+                                    <div class="main_channels" style="float:left; width: 80px;">
+                                        <a href="index.html" title="{{c.callSign}}"><img ng-if="c.preferredImage.uri" ng-src="http://demo.tmsimg.com/{{c.preferredImage.uri}}"  alt="Channel Logo" /></a>
+                                        <span class="title" style="font-size:.6em; color: #000;" >{{c.channel}} {{c.callSign}}</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div><!-- // Channels -->
+
+                        <div class="epg-programmes">
+                            <!-- // Marker -->
+
+                            <ol class="list list-programmes" style="width:5280px;">
+                                <li ng-repeat="programme in scheduled" style="width: 5280px">
+                                    <div style="display:none"> {{ programme }}</div>
+                                    <div on-scroll-to="loadLower" class="programme" sticky is-sticky="{{$index == 1 ? true : true}}" sticky-left="90" ng-repeat="p in programme" style="{{ fixWidth(p.y,p.l) }};  margin-left: {{p.o ? p.o : 0}}px;" ng-lazy-load >
+                                        <div style="display:none"> {{ p }}  </div>
+                                        <a href ng-click="open(p)" ng-class="{hg:p.y == y && p.x == x}" class="program_section" ng-if="p.program.entityType == 'Sports'" style="background-color: #def;">
+                                            <div class="sticky_title">
+                                            <h6 class="title" style="text-align: left; font-size:{{p.size}}px">{{p.program.title}}</h6>
+                                            <h6 class="title" style="text-align: left;font-size:{{p.size}}px"></h6>
+                                            </div>
+                                        </a>
+                                        <a href ng-click="open(p)" ng-class="{hg:p.y == y && p.x == x}" class="program_section" ng-if="p.program.entityType == 'Movie'" style="background-color: #fdd;">
+                                            <div class="sticky_title">
+                                            <h6 class="title" style="text-align: left; font-size:{{p.size}}px">{{p.program.title}}: {{p.program.episodeTitle}}</h6>
+                                            <h6 class="title" style="text-align: left;font-size:{{p.size}}px"></h6>
+                                            </div>
+                                        </a>
+                                        <a href ng-click="open(p)" ng-class="{hg:p.y == y && p.x == x}" class="program_section" ng-if="p.program.genres.indexOf('Documentary')>-1" style="background-color:#ffd;">
+										
+                                            <div class="sticky_title">
+                                            <h6 class="title" style="text-align: left; font-size:{{p.size}}px">{{p.program.title}}</h6>
+                                            <h6 class="title" style="text-align: left;font-size:{{p.size}}px"></h6>
+                                            </div>
+                                        </a>
+                                        <a href ng-click="open(p)" ng-class="{hg:p.y == y && p.x == x}" class="program_section" ng-if="p.program.entityType != 'Sports' && p.program.entityType != 'Movie' && p.program.genres.indexOf('Documentary')<=-1" style="background-color:rgb(255, 255, 255);">
+										
+                                            <div class="sticky_title">
+                                            <h6 class="title" style="text-align: left; font-size:{{p.size}}px">{{p.program.title}}</h6>
+                                            <h6 class="title" style="text-align: left;font-size:{{p.size}}px"></h6>
+                                            </div>
+                                        </a>
+                                    </div> 
+                                </li><!-- // Channel -->
+                                
+                            </ol>
+
+                        </div><!-- // Programmes -->
+                    </div><!-- // Grid -->
+                </div><!-- // Contents -->
+            </div><!-- // EPG -->
+
+        </main>
+        <script type="text/ng-template" id="firstDialogId">
+            <div class="ngdialog-message">
+            <div style="height:100%;">
+                <img ng-if="detail.program.preferredImage.uri" ng-src="http://demo.tmsimg.com/{{detail.program.preferredImage.uri}}"  alt="" style="float:left; margin-right:10px;" />
+                <!--<img ng-src="{{detail.program.preferredImage?('http://cdn.tvpassport.com/image/show/240x135/'+ detail.program.preferredImage.uri):null}}" alt="" style="float:left; margin-right:10px;">-->
+            </div>
+            <div><h3>{{detail.program.title}}</h3>
+            <div><h3>{{detail.program.shortDescription}}</h3>
+            <!---->
+            <p>{{(detail.stime) | date:'HH:mm'}} - {{(detail.endTime) | date:'HH:mm'}}</p>
+
+            <p><!--Description:--> {{detail.program.longDescription}}</p>
+            <!--<p>Type: {{detail.program.entityType}}</p>-->
+            </div>
+
+            </div>
+        </script>
+        <script type="text/javascript">
+                    $(document).ready(function () {
+                             
+
+
+                       var d = new Date();
+                        var now_day = d.getDay();
+                        var dys = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+                        var tomor = now_day + 1;
+                        if (tomor == 7)
+                            tomor = 0;
+
+                        var dy = '<li class="today" ><a href="index.html" ng-click="setDay(' + now_day + ', $event)">Today</a></li> <li><a href="index.html" ng-click="setDay(' + tomor + ', $event)" >Tomorrow</a></li>';
+                        $("#days").empty();
+
+                        var ddy = ' ';
+                        var ds = 0;
+                        for (var i = 1; i < 6; i++) {
+                            ds = i + tomor;
+                            if (ds > 6)
+                                ds = ds - 7;
+                            ddy = ddy + '<li ><a href="index.html" ng-click="setDay(' + ds + ', $event)" >' + dys[ds] + '</a></li>';
+                        }
+                        dy = dy + ddy;
+                        $("#days").append(dy);
+                    });
+        </script>
+
+        <script type="text/javascript">
+                    function timebar_relocate() {
+
+                        var window_top = $(window).scrollTop();
+
+                        var div_top = $('#timebar-anchor').offset().top;
+
+                        if (window_top > div_top) {
+                            $('#timebar').addClass('timebar');
+                            var lf = $(".epg-grid").scrollLeft();
+                            $("#timebar.timebar").css("margin-left", -lf + "px");
+                            $('#timebar-anchor').height($('#timebar').outerHeight());
+                        } else {
+                            $('#timebar').removeClass('timebar');
+                            $('#timebar-anchor').height(0);
+                            $("#timebar").css("margin-left", "0px");
+                        }
+                    }
+
+                    $(function () {
+                        $(window).scroll(timebar_relocate);
+                        timebar_relocate();
+                    });
+                    $(".epg-grid").scroll(epg_scroll);
+                    function epg_scroll() {
+                        var lf = $(".epg-grid").scrollLeft();
+                        $("#timebar.timebar").css("margin-left", -lf + "px");
+                        //$("#timebar").css("margin-left",-lf+"px");
+                       
+                    }
+
+                    $(".epg-grid").scrollLeft((hr-1)*220);
+                    epg_scroll();
+
+                    
+
+
+        </script>
+        
+        <script type="text/javascript">
+            var q=0;var q1=0;
+            var myads = setTimeout(creatAds_space, 5000);
+            var myads_content;
+            function creatAds_space(){
+                var Channel_len=$(".list-programmes li").length;
+                
+            if (Channel_len>12){
+                var club=0;
+                if (Channel_len==30) {club=24;} else {club=10;}
+                //list-channels
+                q=0;q1=0;
+                $( ".list-channels li" ).each(function( index ) {
+                    q++;
+                    
+                    if (q%club==0){q1++;
+                        $( ".list-channels" ).append('<li class="ads_CHcontainer'+q1+'" style="width: 100%;height: 54px;display: none;background-color:grey;"></li>');
+                        $( ".ads_CHcontainer"+q1 ).insertAfter(this);
+                        $( ".ads_CHcontainer"+q1 ).css("display","inline");
+                    }
+                });
+                //list-programmes
+                q=0;q1=0;
+                $( ".list-programmes li" ).each(function( index ) {
+                    q++;
+                    
+                    if (q%club==0){q1++;
+                        $( ".list-programmes" ).append('<li class="ads_container'+q1+'" style="width: 5280px;height: 54px;display: none;background-color:grey;position: sticky;top:-1px;"></li>');
+                        $( ".ads_container"+q1 ).insertAfter(this);
+                        $( ".ads_container"+q1 ).css("display","inline");
+
+                           
+                         
+                    }
+                });
+
+                
+
+            }
+                
+
+                clearTimeout(myads);
+                for (i=1;i<1000;i++);
+                myads_content = setTimeout(creatAds_content, 1500);
+                
+            }    
+
+             
+            function creatAds_content(){               
+
+                var ads='<div class="ads_container"><div class="ads_div"> <ins class="adsbygoogle"                 data-ad-client="ca-pub-7895876943556033"                data-ad-slot="2628825907"                data-ad-format="auto"></ins></div><div class="blank_ads"></div></div>';
+                        for (i=1;i<=q1;i++){
+                            for (j=0;j<10;j++){
+                            $( ".ads_container"+i ).append(ads);
+                            (adsbygoogle = window.adsbygoogle || []).push({}); 
+                            }
+                        }
+            
+            clearTimeout(myads_content);       
+            }
+                 
+        </script>
+
+    </div>
+       
+
+
+    
+

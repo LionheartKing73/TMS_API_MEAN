@@ -1,0 +1,22 @@
+{
+  "name": "EPG",
+  "version": "1.0.0",
+  "description": "EPG project - node js - angular js - skytv",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-lazy-load": "^1.1.1",
+    "moment": "^2.18.1",
+    "node-iso8601": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "php-serve": "php -S localhost:80",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+

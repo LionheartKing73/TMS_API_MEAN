@@ -1,0 +1,35 @@
+<style type="text/css">
+                #firstline{
+        display: none;
+    }
+</style>
+<div role="main">
+    <main>
+        <div>TvTv uses cookies to ensure that we give you the best experience on TvTv, the use of favorites requires that cookies be enabled. You can change your cookie settings at any time.</div>
+        <div class="epg">
+            <div class="epg-nav">
+                <div class="wrapper">
+                    <a ng-href="#/epg" style="margin-left: 1em;float: left;line-height: 37px;padding-top: .25em;">Back to the TvGrid</a>
+                </div>
+            </div><!-- // Nav -->
+            
+
+            <div class="epg-channels channels-favorites">
+                <ol class="list list-channels">
+                    <li ng-repeat="c in channels | limitTo:taille-1 ">
+                        <div class="main_channels" style="float:left; width: 80px;">
+                            <a href="index.html" title="{{c.callSign}}">
+                                    <img ng-if="c.preferredImage.uri" ng-src="http://demo.tmsimg.com/{{c.preferredImage.uri}}"  alt="Channel Logo" />
+                                <!--<img ng-if="c.logoFilename" ng-src="http://cdn.tvpassport.com/image/station/76x28/{{c.logoFilename}}" alt="Channel Logo" /></a>-->
+                            <span class="title" style="font-size:.6em; color: #000;" >{{c.channel}} {{c.callSign}}</span>
+                            </a>
+                        </div>
+                        <div class="favorites">
+                            <input type="checkbox" ng-click="favorites()" ng-checked="{{favoritesChannels.indexOf(c.stationId) > -1}}" value="{{c.stationId}}" name="fav[]" >
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+</div>
